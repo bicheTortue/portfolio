@@ -45,7 +45,7 @@ SITE_TABS.forEach(tab => {
   if (tab.publications) {
     const count = document.createElement('span');
     count.id = 'publication-count';
-    count.className = 'ml-auto rounded-full bg-surface px-2 py-0.5 text-xs text-muted';
+    count.className = 'ml-auto rounded-full bg-white px-2 py-0.5 text-xs text-muted';
     count.textContent = '…';
     link.append(count);
   }
@@ -87,7 +87,7 @@ async function fetchPublications() {
       }
       items.forEach(paper => {
         const article = document.createElement('article');
-        article.className = compact ? 'rounded-xl border border-line bg-surface p-5' : 'paper-row';
+        article.className = compact ? 'rounded-xl border border-line bg-white p-5' : 'paper-row';
         const title = document.createElement('h3');
         title.className = 'paper-title';
         const link = document.createElement('a');

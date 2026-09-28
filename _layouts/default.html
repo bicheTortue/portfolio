@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0a1418" />
+    <meta name="theme-color" content="#f7f8f5" />
     <meta name="description" content="Valentin Barbaza — PhD student in Electronics. Research, publications, and contact information." />
     <title>{{ page.title }} | Researcher Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -12,14 +12,14 @@
         theme: {
           extend: {
             colors: {
-              ink: '#e8f0ee', muted: '#a0afb1', paper: '#0a1418',
-              line: '#27383d', accent: '#63d1bd', pale: '#15302e', surface: '#122126'
+              ink: '#172b35', muted: '#60727a', paper: '#f7f8f5',
+              line: '#dfe6e2', accent: '#147d72', pale: '#e5f1ed'
             },
             fontFamily: {
               sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
               serif: ['Georgia', 'ui-serif', 'serif']
             },
-            boxShadow: { soft: '0 16px 50px rgba(0,0,0,.22)' }
+            boxShadow: { soft: '0 16px 50px rgba(23,43,53,.06)' }
           }
         }
       };
@@ -33,10 +33,10 @@
     <div class="mx-auto min-h-screen max-w-7xl px-5 sm:px-8 lg:px-12">
       <header class="flex items-center justify-between border-b border-line py-5">
         <a href="{{ '/' | relative_url }}" class="flex items-center gap-3" aria-label="Valentin Barbaza home">
-          <span class="grid h-10 w-10 place-items-center rounded-full bg-accent font-serif text-sm text-[#0a1418]">VB</span>
+          <span class="grid h-10 w-10 place-items-center rounded-full bg-ink font-serif text-sm text-white">VB</span>
           <span class="text-sm font-semibold tracking-tight" data-profile-text="name">Valentin Barbaza</span>
         </a>
-        <a href="mailto:your.email@university.edu" data-profile-email-link class="hidden items-center gap-2 rounded-full border border-line bg-surface px-4 py-2 text-sm font-medium transition hover:border-accent hover:text-accent sm:inline-flex">Get in touch <span aria-hidden="true">↗</span></a>
+        <a href="mailto:your.email@university.edu" data-profile-email-link class="hidden items-center gap-2 rounded-full border border-line bg-white px-4 py-2 text-sm font-medium transition hover:border-accent hover:text-accent sm:inline-flex">Get in touch <span aria-hidden="true">↗</span></a>
         <button id="menu-toggle" class="rounded-lg border border-line px-3 py-2 text-sm sm:hidden" aria-expanded="false" aria-controls="site-nav">Menu</button>
       </header>
 
