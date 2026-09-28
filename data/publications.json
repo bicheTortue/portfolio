@@ -1,6 +1,37 @@
 {
   "authorId": "2383172305",
-  "generatedAt": null,
+  "generatedAt": "2026-09-28T12:52:05+00:00",
   "source": "Semantic Scholar",
-  "papers": []
+  "papers": [
+    {
+      "paperId": "a1a88758960b51b8f7b47d8d429df74c28f12b6c",
+      "title": "Stealing AI Model Weights Through Covert Communication Channels",
+      "year": 2025,
+      "authors": [
+        {
+          "name": "Valentin Barbaza"
+        },
+        {
+          "name": "A. R. Díaz-Rizo"
+        },
+        {
+          "name": "A. Abdelazim"
+        },
+        {
+          "name": "Emilien Dole"
+        },
+        {
+          "name": "Hassan Aboushady"
+        },
+        {
+          "name": "Spyridon Raptis"
+        },
+        {
+          "name": "H. Stratigopoulos"
+        }
+      ],
+      "venue": "IEEE Transactions on Very Large Scale Integration (vlsi) Systems",
+      "url": "https://www.semanticscholar.org/paper/a1a88758960b51b8f7b47d8d429df74c28f12b6c"
+    }
+  ]
 }
