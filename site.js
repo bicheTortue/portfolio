@@ -10,6 +10,8 @@ const SITE_TABS = [
 const currentFile = location.pathname.split('/').pop() || 'index.html';
 const navigation = document.getElementById('site-nav');
 const profile = window.SITE_PROFILE;
+const portrait = document.querySelector('[data-profile-image]');
+if (portrait) portrait.alt = `Portrait of ${profile.name}`;
 const pageTitle = document.body.dataset.pageTitle || 'Portfolio';
 document.title = `${pageTitle} | ${profile.name}`;
 const description = document.querySelector('meta[name="description"]');
