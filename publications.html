@@ -15,35 +15,36 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="bg-paper font-sans text-ink antialiased selection:bg-pale selection:text-ink">
+  <body data-page-title="Publications" class="bg-paper font-sans text-ink antialiased selection:bg-pale selection:text-ink">
     <div class="mx-auto min-h-screen max-w-7xl px-5 sm:px-8 lg:px-12">
       <header class="flex items-center justify-between border-b border-line py-5">
         <a href="index.html" class="flex items-center gap-3" aria-label="Valentin Barbaza home">
           <span class="grid h-10 w-10 place-items-center rounded-full bg-ink font-serif text-sm text-white">VB</span>
-          <span class="text-sm font-semibold tracking-tight">Valentin Barbaza</span>
+          <span class="text-sm font-semibold tracking-tight" data-profile-text="name">Valentin Barbaza</span>
         </a>
-        <a href="mailto:your.email@university.edu" class="hidden items-center gap-2 rounded-full border border-line bg-white px-4 py-2 text-sm font-medium transition hover:border-accent hover:text-accent sm:inline-flex">Get in touch <span aria-hidden="true">↗</span></a>
+        <a href="mailto:your.email@university.edu" data-profile-email-link class="hidden items-center gap-2 rounded-full border border-line bg-white px-4 py-2 text-sm font-medium transition hover:border-accent hover:text-accent sm:inline-flex">Get in touch <span aria-hidden="true">↗</span></a>
         <button id="menu-toggle" class="rounded-lg border border-line px-3 py-2 text-sm sm:hidden" aria-expanded="false" aria-controls="site-nav">Menu</button>
       </header>
       <div class="grid gap-10 py-8 md:grid-cols-[220px_minmax(0,1fr)] md:gap-14 md:py-14 lg:grid-cols-[250px_minmax(0,1fr)] lg:gap-20">
         <aside class="md:sticky md:top-8 md:h-fit">
           <div class="flex items-center gap-4 md:block">
             <div class="relative grid h-20 w-20 shrink-0 place-items-center overflow-hidden rounded-2xl bg-pale text-2xl font-serif text-accent md:mb-6 md:h-48 md:w-full md:rounded-3xl md:text-5xl"><span>VB</span><span class="absolute bottom-2 right-3 h-3 w-3 rounded-full border-2 border-paper bg-accent md:bottom-4 md:right-4 md:h-4 md:w-4" title="Open to research conversations"></span></div>
-            <div><p class="font-serif text-xl md:text-2xl">Valentin Barbaza</p><p class="mt-1 text-sm leading-6 text-muted">PhD student in Electronics</p></div>
+            <div><p class="font-serif text-xl md:text-2xl" data-profile-text="name">Valentin Barbaza</p><p class="mt-1 text-sm leading-6 text-muted" data-profile-text="role">PhD student in Electronics</p></div>
           </div>
           <p class="mt-6 hidden text-sm leading-7 text-muted md:block">Researching the ideas and technologies shaping the next generation of electronic systems.</p>
           <nav id="site-nav" class="mt-7 hidden space-y-1 sm:flex sm:flex-wrap sm:gap-2 sm:space-y-0 md:mt-9 md:block md:space-y-1" aria-label="Main navigation"></nav>
-          <div class="mt-9 hidden border-t border-line pt-5 md:block"><p class="text-xs font-semibold uppercase tracking-[.16em] text-muted">Based in</p><p class="mt-2 text-sm">[City, Country]</p><div class="mt-5 flex gap-4 text-sm text-muted"><a class="transition hover:text-accent" href="https://scholar.google.com/" target="_blank" rel="noreferrer">Scholar ↗</a><a class="transition hover:text-accent" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn ↗</a></div></div>
+          <div class="mt-9 hidden border-t border-line pt-5 md:block"><p class="text-xs font-semibold uppercase tracking-[.16em] text-muted">Based in</p><p class="mt-2 text-sm" data-profile-text="city">[City, Country]</p><div class="mt-5 flex gap-4 text-sm text-muted"><a class="transition hover:text-accent" href="https://scholar.google.com/" data-profile-href="scholarUrl" target="_blank" rel="noreferrer">Scholar ↗</a><a class="transition hover:text-accent" href="https://www.linkedin.com/" data-profile-href="linkedinUrl" target="_blank" rel="noreferrer">LinkedIn ↗</a></div></div>
         </aside>
         <main class="min-w-0">
           <section id="page-content" aria-labelledby="publications-heading"><p class="eyebrow">Publications</p><h1 id="publications-heading" class="page-title">Papers &amp; preprints.</h1>
             <p class="intro">An automatically updated list of publications indexed by Semantic Scholar.</p>
             <div class="mt-8 flex flex-wrap items-center justify-between gap-3 border-b border-line pb-4"><p class="text-sm text-muted"><span id="publication-summary">Fetching papers…</span></p><a class="text-sm font-medium text-accent hover:underline" href="https://www.semanticscholar.org/" target="_blank" rel="noreferrer">Semantic Scholar profile ↗</a></div>
             <div id="publications" class="mt-3 divide-y divide-line"><p class="py-6 text-sm text-muted">Loading publications…</p></div></section>
-          <footer class="mt-16 flex flex-col gap-2 border-t border-line py-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between"><span>© <span id="year"></span> Valentin Barbaza</span><span>Built for curiosity and collaboration.</span></footer>
+          <footer class="mt-16 flex flex-col gap-2 border-t border-line py-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between"><span>© <span id="year"></span> <span data-profile-text="name">Valentin Barbaza</span></span><span>Built for curiosity and collaboration.</span></footer>
         </main>
       </div>
     </div>
+    <script src="profile.js" defer></script>
     <script src="site.js" defer></script>
   </body>
 </html>

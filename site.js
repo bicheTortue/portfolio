@@ -9,6 +9,28 @@ const SITE_TABS = [
 
 const currentFile = location.pathname.split('/').pop() || 'index.html';
 const navigation = document.getElementById('site-nav');
+const profile = window.SITE_PROFILE;
+const pageTitle = document.body.dataset.pageTitle || 'Portfolio';
+document.title = `${pageTitle} | ${profile.name}`;
+const description = document.querySelector('meta[name="description"]');
+if (description) description.content = `${profile.name} — ${profile.role}. ${pageTitle}, research, and contact information.`;
+
+document.querySelectorAll('[data-profile-text]').forEach(element => {
+  const value = profile[element.dataset.profileText];
+  if (value) element.textContent = value;
+});
+document.querySelectorAll('[data-profile-href]').forEach(element => {
+  const value = profile[element.dataset.profileHref];
+  if (value) element.href = value;
+  else if (element.dataset.profileHref === 'universityUrl') {
+    element.removeAttribute('href');
+    element.classList.remove('text-accent', 'underline', 'decoration-accent/30', 'underline-offset-4');
+  }
+});
+document.querySelectorAll('[data-profile-email-link]').forEach(element => {
+  const subject = element.dataset.emailSubject;
+  element.href = `mailto:${profile.email}${subject ? `?subject=${encodeURIComponent(subject)}` : ''}`;
+});
 
 SITE_TABS.forEach(tab => {
   const link = document.createElement('a');
@@ -34,8 +56,8 @@ document.getElementById('menu-toggle').addEventListener('click', event => {
 });
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Replace with a different Semantic Scholar author ID to update the fetched papers.
-const AUTHOR_ID = '2383172305';
+// The author ID is configured centrally in profile.js.
+const AUTHOR_ID = profile.semanticScholarAuthorId;
 
 async function fetchPublications() {
   const list = document.getElementById('publications');
