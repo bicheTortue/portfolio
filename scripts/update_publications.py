@@ -91,6 +91,15 @@ def normalize_papers(papers: list[dict]) -> list[dict]:
     return normalized
 
 
+def paper_identity(paper: dict) -> str | tuple[str, str]:
+    if paper.get("paperId"):
+        return str(paper["paperId"])
+    return (
+        (paper.get("title") or "").strip().casefold(),
+        str(paper.get("year") or ""),
+    )
+
+
 def main() -> int:
     author_id = author_id_from_profile()
     fetched = []
@@ -109,6 +118,20 @@ def main() -> int:
         raise RuntimeError(
             "Semantic Scholar returned no papers; keeping the existing cache unchanged"
         )
+
+    cached = {}
+    if OUTPUT.exists():
+        cached = json.loads(OUTPUT.read_text(encoding="utf-8"))
+    cached_papers = cached.get("papers", [])
+    if cached.get("authorId") == author_id:
+        known_papers = {paper_identity(paper) for paper in cached_papers}
+    else:
+        known_papers = set()
+    new_papers = [paper for paper in papers if paper_identity(paper) not in known_papers]
+    if not new_papers:
+        print("No new papers found; leaving the publication cache unchanged.")
+        return 0
+    print(f"Found {len(new_papers)} paper(s) not yet in the publication cache.")
 
     payload = {
         "authorId": author_id,
