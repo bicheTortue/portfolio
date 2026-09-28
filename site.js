@@ -58,7 +58,7 @@ document.getElementById('menu-toggle').addEventListener('click', event => {
 });
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// The author ID is configured centrally in profile.js.
+// Papers are refreshed by GitHub Actions and served as a static JSON file.
 const AUTHOR_ID = profile.semanticScholarAuthorId;
 
 async function fetchPublications() {
@@ -68,20 +68,30 @@ async function fetchPublications() {
   if (!list && !latest) return;
 
   try {
-    const response = await fetch(`https://api.semanticscholar.org/graph/v1/author/${AUTHOR_ID}/papers?fields=title,year,authors,venue,url&limit=100`);
-    if (!response.ok) throw new Error(`Semantic Scholar returned ${response.status}`);
+    const response = await fetch('data/publications.json', { cache: 'no-cache' });
+    if (!response.ok) throw new Error(`Publication cache returned ${response.status}`);
     const result = await response.json();
-    const papers = Array.isArray(result.data) ? result.data : [];
+    const papers = Array.isArray(result.papers) ? result.papers : [];
     const count = document.getElementById('publication-count');
     if (count) count.textContent = String(papers.length);
-    if (summary) summary.textContent = `${papers.length} ${papers.length === 1 ? 'paper' : 'papers'} indexed`;
+    if (summary) {
+      const updated = result.generatedAt ? new Date(result.generatedAt) : null;
+      const updatedText = updated && !Number.isNaN(updated.valueOf())
+        ? ` · Updated ${new Intl.DateTimeFormat(undefined, { dateStyle: 'medium' }).format(updated)}`
+        : '';
+      summary.textContent = result.generatedAt
+        ? `${papers.length} ${papers.length === 1 ? 'paper' : 'papers'}${updatedText}`
+        : 'Waiting for the first GitHub Actions refresh';
+    }
 
     const render = (container, items, compact) => {
       container.replaceChildren();
       if (!items.length) {
         const empty = document.createElement('p');
         empty.className = 'py-6 text-sm text-muted';
-        empty.textContent = 'No publications were found for this author yet.';
+        empty.textContent = result.generatedAt
+          ? 'No publications were found for this author yet.'
+          : 'The publication list will appear after the first GitHub Actions refresh.';
         container.append(empty);
         return;
       }
@@ -118,11 +128,11 @@ async function fetchPublications() {
     console.error('Could not load publications:', error);
     const count = document.getElementById('publication-count');
     if (count) count.textContent = '—';
-    if (summary) summary.textContent = 'Publications could not be loaded right now.';
+    if (summary) summary.textContent = 'The saved publication list could not be loaded right now.';
     [list, latest].filter(Boolean).forEach(container => {
       const message = document.createElement('p');
       message.className = 'py-6 text-sm text-muted';
-      message.append('Unable to load publications. Please try again later or visit my ');
+      message.append('Unable to load the saved publication list. Please visit my ');
       const profile = document.createElement('a');
       profile.className = 'text-accent underline';
       profile.href = `https://www.semanticscholar.org/author/${AUTHOR_ID}`;
