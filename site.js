@@ -2,7 +2,12 @@
 const SITE_TABS = [
   { label: 'Overview', number: '01', file: 'index.html' },
   { label: 'Research', number: '02', file: 'research.html' },
-  { label: 'Publications', number: '03', file: 'publications.html', publications: true },
+  {
+    label: 'Publications',
+    number: '03',
+    file: 'publications.html',
+    publications: true
+  },
   { label: 'CV', number: '04', file: 'cv.html' },
   { label: 'Contact', number: '05', file: 'contact.html' }
 ];
@@ -15,7 +20,9 @@ if (portrait) portrait.alt = `Portrait of ${profile.name}`;
 const pageTitle = document.body.dataset.pageTitle || 'Portfolio';
 document.title = `${pageTitle} | ${profile.name}`;
 const description = document.querySelector('meta[name="description"]');
-if (description) description.content = `${profile.name} — ${profile.role}. ${pageTitle}, research, and contact information.`;
+if (description) {
+  description.content = `${profile.name} — ${profile.role}. ${pageTitle}, research, and contact information.`;
+}
 
 document.querySelectorAll('[data-profile-text]').forEach(element => {
   const value = profile[element.dataset.profileText];
@@ -26,8 +33,7 @@ document.querySelectorAll('[data-profile-href]').forEach(element => {
   if (value) {
     element.href = value;
     element.hidden = false;
-  }
-  else if (element.dataset.profileHref === 'universityUrl') {
+  } else if (element.dataset.profileHref === 'universityUrl') {
     element.removeAttribute('href');
     element.classList.remove('text-accent', 'underline', 'decoration-accent/30', 'underline-offset-4');
   } else if (element.hasAttribute('data-profile-social')) {
@@ -43,7 +49,9 @@ SITE_TABS.forEach(tab => {
   const link = document.createElement('a');
   link.href = tab.file;
   link.className = `tab-button nav-link${tab.file === currentFile ? ' active-tab' : ''}`;
-  if (tab.file === currentFile) link.setAttribute('aria-current', 'page');
+  if (tab.file === currentFile) {
+    link.setAttribute('aria-current', 'page');
+  }
   const number = document.createElement('span');
   number.textContent = tab.number;
   link.append(number, document.createTextNode(tab.label));
@@ -81,9 +89,12 @@ async function fetchPublications() {
     if (count) count.textContent = String(papers.length);
     if (summary) {
       const updated = result.generatedAt ? new Date(result.generatedAt) : null;
-      const updatedText = updated && !Number.isNaN(updated.valueOf())
-        ? ` · Updated ${new Intl.DateTimeFormat(undefined, { dateStyle: 'medium' }).format(updated)}`
-        : '';
+      const updatedText =
+        updated && !Number.isNaN(updated.valueOf())
+          ? ` · Updated ${new Intl.DateTimeFormat(undefined, {
+              dateStyle: 'medium'
+            }).format(updated)}`
+          : '';
       summary.textContent = result.generatedAt
         ? `${papers.length} ${papers.length === 1 ? 'paper' : 'papers'}${updatedText}`
         : 'Waiting for the first GitHub Actions refresh';
@@ -113,7 +124,12 @@ async function fetchPublications() {
         title.append(link);
         const authors = document.createElement('p');
         authors.className = 'paper-meta';
-        authors.textContent = `${(paper.authors || []).map(author => author.name).filter(Boolean).join(', ')}${paper.year ? ` · ${paper.year}` : ''}`;
+        const authorNames = (paper.authors || [])
+          .map(author => author.name)
+          .filter(Boolean)
+          .join(', ');
+        const publicationYear = paper.year ? ` · ${paper.year}` : '';
+        authors.textContent = `${authorNames}${publicationYear}`;
         const venue = document.createElement('p');
         venue.className = 'paper-meta';
         venue.textContent = paper.venue || 'Preprint / Journal';
@@ -133,7 +149,9 @@ async function fetchPublications() {
     console.error('Could not load publications:', error);
     const count = document.getElementById('publication-count');
     if (count) count.textContent = '—';
-    if (summary) summary.textContent = 'The saved publication list could not be loaded right now.';
+    if (summary) {
+      summary.textContent = 'The saved publication list could not be loaded right now.';
+    }
     [list, latest].filter(Boolean).forEach(container => {
       const message = document.createElement('p');
       message.className = 'py-6 text-sm text-muted';
