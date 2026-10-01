@@ -171,6 +171,23 @@
   color: #147d72;
 }
 
+.contact-icon::before {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: currentColor;
+  content: '';
+}
+
+.email-icon::before {
+  -webkit-mask: url('logos/email.svg') center / contain no-repeat;
+  mask: url('logos/email.svg') center / contain no-repeat;
+}
+
+.matrix-icon::before {
+  -webkit-mask: url('logos/matrix.svg') center / contain no-repeat;
+  mask: url('logos/matrix.svg') center / contain no-repeat;
+}
+
 .paper-row {
   padding: 1.25rem 0.25rem;
 }
