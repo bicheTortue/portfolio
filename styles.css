@@ -9,8 +9,8 @@
   font-size: 0.875rem;
   text-align: left;
   transition:
-    background 0.18s,
-    color 0.18s;
+  background 0.18s,
+  color 0.18s;
 }
 
 .tab-button span:first-child {
@@ -151,8 +151,8 @@
   padding: 1.5rem;
   background: #fff;
   transition:
-    border-color 0.18s,
-    transform 0.18s;
+  border-color 0.18s,
+  transform 0.18s;
 }
 
 .contact-card:hover {
@@ -186,6 +186,11 @@
 .matrix-icon::before {
   -webkit-mask: url('logos/matrix.svg') center / contain no-repeat;
   mask: url('logos/matrix.svg') center / contain no-repeat;
+}
+
+.location-icon::before {
+  -webkit-mask: url('logos/location.svg') center / contain no-repeat;
+  mask: url('logos/location.svg') center / contain no-repeat;
 }
 
 .paper-row {
