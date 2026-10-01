@@ -23,10 +23,15 @@ document.querySelectorAll('[data-profile-text]').forEach(element => {
 });
 document.querySelectorAll('[data-profile-href]').forEach(element => {
   const value = profile[element.dataset.profileHref];
-  if (value) element.href = value;
+  if (value) {
+    element.href = value;
+    element.hidden = false;
+  }
   else if (element.dataset.profileHref === 'universityUrl') {
     element.removeAttribute('href');
     element.classList.remove('text-accent', 'underline', 'decoration-accent/30', 'underline-offset-4');
+  } else if (element.hasAttribute('data-profile-social')) {
+    element.hidden = true;
   }
 });
 document.querySelectorAll('[data-profile-email-link]').forEach(element => {
