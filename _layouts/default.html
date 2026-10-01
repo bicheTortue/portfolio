@@ -46,31 +46,36 @@
     class="bg-paper font-sans text-ink antialiased selection:bg-pale selection:text-ink"
   >
     <div class="mx-auto min-h-screen max-w-7xl px-5 sm:px-8 lg:px-12">
-      <header class="flex items-center justify-between border-b border-line py-5">
+      <header class="site-header">
         <a
           href="{{ '/' | relative_url }}"
-          class="flex items-center gap-3"
+          class="site-brand"
           aria-label="Valentin Barbaza home"
         >
-          <span class="grid h-10 w-10 place-items-center rounded-full bg-ink font-serif text-sm text-white">VB</span>
-          <span class="text-sm font-semibold tracking-tight" data-profile-text="name">Valentin Barbaza</span>
+          <span class="brand-mark">VB</span>
+          <span class="text-sm font-semibold tracking-tight" data-profile-text="name">
+            Valentin Barbaza
+          </span>
         </a>
-        <a
-          href="mailto:your.email@university.edu"
-          data-profile-email-link
-          class="hidden items-center gap-2 rounded-full border border-line bg-white px-4 py-2
-            text-sm font-medium transition hover:border-accent hover:text-accent sm:inline-flex"
-        >
-          Get in touch <span aria-hidden="true">↗</span>
-        </a>
-        <button
-          id="menu-toggle"
-          class="rounded-lg border border-line px-3 py-2 text-sm sm:hidden"
-          aria-expanded="false"
-          aria-controls="site-nav"
-        >
-          Menu
-        </button>
+        <nav id="site-nav" class="site-nav" aria-label="Main navigation"></nav>
+        <div class="header-actions">
+          <a
+            href="mailto:your.email@university.edu"
+            data-profile-email-link
+            class="header-contact"
+          >
+            Get in touch <span aria-hidden="true">↗</span>
+          </a>
+          <button
+            id="menu-toggle"
+            class="menu-toggle"
+            aria-expanded="false"
+            aria-controls="site-nav"
+          >
+            <span class="menu-toggle-label">Menu</span>
+            <span class="menu-toggle-icon" aria-hidden="true">☰</span>
+          </button>
+        </div>
       </header>
 
       <div
@@ -103,11 +108,6 @@
           <p class="mt-6 hidden text-sm leading-7 text-muted md:block">
             Researching the ideas and technologies shaping the next generation of electronic systems.
           </p>
-          <nav
-            id="site-nav"
-            class="mt-7 hidden space-y-1 sm:flex sm:flex-wrap sm:gap-2 sm:space-y-0 md:mt-9 md:block md:space-y-1"
-            aria-label="Main navigation"
-          ></nav>
           <div class="mt-9 hidden border-t border-line pt-5 md:block">
             <p class="text-xs font-semibold uppercase tracking-[.16em] text-muted">Based in</p>
             <p class="mt-2 text-sm" data-profile-text="city">[City, Country]</p>

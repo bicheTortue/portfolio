@@ -65,9 +65,26 @@ SITE_TABS.forEach(tab => {
   navigation.append(link);
 });
 
-document.getElementById('menu-toggle').addEventListener('click', event => {
+const menuToggle = document.getElementById('menu-toggle');
+
+menuToggle.addEventListener('click', event => {
   const open = navigation.classList.toggle('mobile-open');
   event.currentTarget.setAttribute('aria-expanded', String(open));
+});
+
+document.addEventListener('click', event => {
+  if (!navigation.contains(event.target) && !menuToggle.contains(event.target)) {
+    navigation.classList.remove('mobile-open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }
+});
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && navigation.classList.contains('mobile-open')) {
+    navigation.classList.remove('mobile-open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.focus();
+  }
 });
 document.getElementById('year').textContent = new Date().getFullYear();
 
