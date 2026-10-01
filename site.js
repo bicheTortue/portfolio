@@ -59,7 +59,7 @@ SITE_TABS.forEach(tab => {
     const count = document.createElement('span');
     count.id = 'publication-count';
     count.className = 'ml-auto rounded-full bg-white px-2 py-0.5 text-xs text-muted';
-    count.textContent = '…';
+    count.hidden = true;
     link.append(count);
   }
   navigation.append(link);
@@ -78,7 +78,6 @@ async function fetchPublications() {
   const list = document.getElementById('publications');
   const latest = document.getElementById('latest-publications');
   const summary = document.getElementById('publication-summary');
-  if (!list && !latest) return;
 
   try {
     const response = await fetch('data/publications.json', { cache: 'no-cache' });
@@ -86,7 +85,10 @@ async function fetchPublications() {
     const result = await response.json();
     const papers = Array.isArray(result.papers) ? result.papers : [];
     const count = document.getElementById('publication-count');
-    if (count) count.textContent = String(papers.length);
+    if (count) {
+      count.textContent = String(papers.length);
+      count.hidden = false;
+    }
     if (summary) {
       const updated = result.generatedAt ? new Date(result.generatedAt) : null;
       const updatedText =
@@ -147,8 +149,6 @@ async function fetchPublications() {
     if (latest) render(latest, papers.slice(0, 3), true);
   } catch (error) {
     console.error('Could not load publications:', error);
-    const count = document.getElementById('publication-count');
-    if (count) count.textContent = '—';
     if (summary) {
       summary.textContent = 'The saved publication list could not be loaded right now.';
     }
